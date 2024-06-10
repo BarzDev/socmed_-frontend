@@ -1,6 +1,29 @@
+import { Avatar } from "@chakra-ui/react";
+
 interface ModalProps {
   onClose: () => void;
 }
+
+const accounts = [
+  {
+    name: "user1",
+    username: "@user1",
+    pass: "user1",
+    photo: "https://bit.ly/kent-c-dodds",
+  },
+  {
+    name: "user2",
+    username: "@user2",
+    pass: "user2",
+    photo: "https://bit.ly/ryan-florence",
+  },
+  {
+    name: "user3",
+    username: "@user3",
+    pass: "user3",
+    photo: "https://bit.ly/dan-abramov",
+  },
+];
 
 export function Modal({ onClose }: ModalProps): JSX.Element {
   return (
@@ -26,23 +49,26 @@ export function Modal({ onClose }: ModalProps): JSX.Element {
                 >
                   Login Help
                 </p>
-                <div className="mt-2">
-                  <div className="flex items-center">
-                    <p className="text-sm font-bold text-gray-800">
-                      ADMIN ROLE ➡{" "}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Username: admin, Password: admin
-                    </p>
-                  </div>
-                  <div className="flex items-center">
-                    <p className="text-sm font-bold text-gray-800">
-                      USER ROLE ➡{" "}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Username: user, Password: user
-                    </p>
-                  </div>
+
+                <div className="mt-4 flex flex-col gap-2">
+                  {accounts.map((acc) => {
+                    return (
+                      <div key={acc.name} className="flex items-center">
+                        <Avatar size="sm" name="Kent Dodds" src={acc.photo} />
+                        <div className="ml-3 flex items-cente">
+                          <p className="text-sm font-bold text-gray-800">
+                            {acc.name} ➡{" "}
+                          </p>
+                          <p className="text-sm text-gray-500 font-semibold">
+                            username : {acc.username} ,
+                          </p>
+                          <p className="text-sm text-gray-500 font-semibold">
+                            password : {acc.pass}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
