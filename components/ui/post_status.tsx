@@ -19,17 +19,17 @@ export function PostStatus({ handleRefresh }: any) {
       handleRefresh();
       setStattusPost("");
     } catch (error) {
-      console.error("Error posting comment:", error);
+      // console.error("Error posting comment:", error);
     }
   };
 
   return (
-    <div className="border  p-5  sticky top-0 z-20 backdrop-blur-sm bg-white/30">
+    <div className="border md:p-5 p-2  sticky top-0 z-20 backdrop-blur-sm bg-white/30">
       <div className="border border-2 rouded-lg p-2 bg-white ">
         <input
           className="w-full border border-2 p-2 text-sm"
           type="text"
-          placeholder="Write something..."
+          placeholder="What you feel today..."
           value={statusPost}
           onChange={(e) => setStattusPost(e.target.value)}
         />

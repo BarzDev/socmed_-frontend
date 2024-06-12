@@ -1,10 +1,9 @@
 "use client";
 import clsx from "clsx";
 import Link from "next/link";
-import { Avatar } from "@chakra-ui/react";
+import { Avatar, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { useEffect } from "react";
 
 const homeIcon = (
   <svg
@@ -97,13 +96,9 @@ const links = [
   },
 ];
 
-export function Sidebar() {
+export function SidebarWindows() {
   const { data: session } = useSession();
   const pathname = usePathname();
-
-  useEffect(() => {
-    // console.log({ session });
-  }, []);
   return (
     <div className="min-h-screen font-bold">
       <div className="py-16 flex items-center justify-center gap-2 bg-sky-500 mb-3">
@@ -140,6 +135,61 @@ export function Sidebar() {
         >
           {logoutIcon} Logout
         </button>
+      </div>
+    </div>
+  );
+}
+
+export function SidebarMobile() {
+  const { data: session } = useSession();
+  const pathname = usePathname();
+  return (
+    <div className="fixed bottom-0 left-0 w-full bg-white p-1 z-50 border border-t-sky-500 border-2 ">
+      <div className="flex items-center justify-around">
+        <div></div>
+
+        <div className="flex gap-2">
+          {links.map((link) => (
+            <Link
+              href={link.href}
+              key={link.name}
+              className={clsx(
+                " items-center gap-2 p-2 rounded-lg text-sky-600 border border-2 ",
+                {
+                  "border-sky-500": pathname === link.href,
+                }
+              )}
+            >
+              {link.icon}
+              {/* <span>{link.name}</span> */}
+            </Link>
+          ))}
+        </div>
+
+        <Menu>
+          <MenuButton>
+            <div className="flex items-center justify-center gap-2 ">
+              <Avatar
+                name={session?.user?.name ?? "Guest"}
+                src={session?.user?.photo ?? undefined}
+              />
+            </div>
+            <p className="text-sky-500 font-bold">
+              {session?.user?.username ?? "Guest"}
+            </p>
+          </MenuButton>
+          <MenuList>
+            <MenuItem>
+              <div
+                onClick={() => signOut()}
+                className="flex items-center justify-center gap-2 p-2 rounded-lg bg-red-600 text-white hover:bg-red-700 w-full"
+              >
+                {logoutIcon}
+                <span>Logout</span>
+              </div>
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sidebar } from "@/components/ui/sidebar";
+import { SidebarMobile, SidebarWindows } from "@/components/ui/sidebar";
 
 export const metadata: Metadata = {
   title: {
@@ -16,10 +16,15 @@ export default function RootLayout({
 }>) {
   return (
     <main
-      className="grid grid-cols-3 gap-4 max-h-screen"
+      className="block md:grid grid-cols-3 gap-4 max-h-screen"
       style={{ gridTemplateColumns: "15% 70% 15%" }}
     >
-      <Sidebar />
+      <div className="md:block hidden">
+        <SidebarWindows />
+      </div>
+      <div className="md:hidden block">
+        <SidebarMobile />
+      </div>
       {children}
     </main>
   );

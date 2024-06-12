@@ -1,14 +1,19 @@
-import Link from "next/link";
+"use client";
+
+import { Loading } from "@/components/login/loading";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="flex justify-center items-center h-screen ">
-      <Link
-        href="/dashboard"
-        className="p-2 cursor-pointer border-2 border-cyan-400 rounded-lg"
-      >
-        go to Dashboard
-      </Link>
-    </div>
-  );
+  const router = useRouter();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      router.push("/dashboard");
+    }
+  }, [session, status, router]);
+
+  return <Loading fullScreen={true} />;
 }

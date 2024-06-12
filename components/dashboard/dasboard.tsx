@@ -34,7 +34,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="h-screen overflow-y-auto px-5 bg-slate-100">
+    <div className="h-screen overflow-y-auto px-5 md:pb-0 pb-24 bg-slate-100 ">
       <PostStatus handleRefresh={handleRefresh} />
       <div className="flex flex-col gap-4 py-5">
         {isLoading ? (
