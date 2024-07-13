@@ -16,7 +16,7 @@ export function CardPost({ post, handleRefresh }: any) {
   };
 
   return (
-    <div className="border border-cyan-500 border-2 flex flex-col gap-2 p-4 rounded-lg bg-white w-full ">
+    <div className=" border-cyan-500 border-2 flex flex-col gap-2 p-4 rounded-lg bg-white w-full ">
       <div className="flex justify-between">
         <div className="flex items-center">
           <Avatar name="Kent Dodds" src={post.photo} />

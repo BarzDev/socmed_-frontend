@@ -144,7 +144,7 @@ export function SidebarMobile() {
   const { data: session } = useSession();
   const pathname = usePathname();
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-white p-1 z-50 border border-t-sky-500 border-2 ">
+    <div className="fixed bottom-0 left-0 w-full bg-white p-1 z-50  border-t-sky-500 border-2 ">
       <div className="flex items-center justify-around">
         <div></div>
 
@@ -154,7 +154,7 @@ export function SidebarMobile() {
               href={link.href}
               key={link.name}
               className={clsx(
-                " items-center gap-2 p-2 rounded-lg text-sky-600 border border-2 ",
+                " items-center gap-2 p-2 rounded-lg text-sky-600  border-2 ",
                 {
                   "border-sky-500": pathname === link.href,
                 }
